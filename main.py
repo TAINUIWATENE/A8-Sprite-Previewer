@@ -4,8 +4,6 @@ from PyQt6.QtGui import *
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 
-# This function loads a series of sprite images stored in a folder with a
-# consistent naming pattern: sprite_# or sprite_##. It returns a list of the images.
 def load_sprite(sprite_folder_name, number_of_frames):
     frames = []
     padding = math.ceil(math.log(number_of_frames - 1, 10))
@@ -20,14 +18,25 @@ class SpritePreview(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Sprite Animation Preview")
-        # This loads the provided sprite and would need to be changed for your own.
         self.num_frames = 21
         self.frames = load_sprite('spriteImages',self.num_frames)
 
-        # Add any other instance variables needed to track information as the program
-        # runs here
+        class SpritePreview(QMainWindow):
 
-        # Make the GUI in the setupUI method
+            def __init__(self):
+                super().__init__()
+                self.setWindowTitle("Sprite Animation Preview")
+
+                self.num_frames = 20
+                self.frames = load_sprite('spriteImages', self.num_frames)
+
+                self.current_frame = 0
+                self.fps = 10
+                self.timer = QTimer()
+                self.timer.timeout.connect(self.next_frame)
+
+
+
         self.setupUI()
 
 
