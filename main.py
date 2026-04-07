@@ -1,6 +1,24 @@
 #A8-Sprite-Previewer
 #Tainui Watene u1334460
 #https://github.com/TAINUIWATENE/A8-Sprite-Previewer
+#ok so I spaced on the GitHub section of this assignment and did all of my code in a
+#separate file. I messaged Farrah Lloyd and asked if commiting four times randomly
+#would work but she said, "For the code you have up to this point
+# write a comment at the top of the code briefly stating at what points you would
+# have made commits to Github earlier. One of the big goals of this assignment is to ensure
+# you understand how to commit to Github and how often, so this comment will help makeup for
+#the commits that could have been made before you pasted your code into Github."
+#I am sorry for the mix up and thank you for letting me fix it.
+
+#If I were to Commit properly I would start with pushing the starter code through so
+#I can test if I did the set up correctly. Then I would improve the SpritePreview Class
+#so it sets up our frames and our QTimer().
+#Now considering that I had to stop at multiple times over the weekend for the SetupUi
+#Section I would probably push from there as well. I would then set up the defs for setting
+#the frame rate and next frames and push that. That took me a minuite to figure out.
+#Then finally I would add the pause and toggle animation definitions and finish the main()
+#definition as a final push.
+
 import math
 
 from PyQt6.QtGui import *
