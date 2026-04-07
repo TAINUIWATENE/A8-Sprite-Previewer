@@ -1,5 +1,6 @@
 #A8-Sprite-Previewer
 #Tainui Watene u1334460
+#https://github.com/TAINUIWATENE/A8-Sprite-Previewer
 import math
 
 from PyQt6.QtGui import *
