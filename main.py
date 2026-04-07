@@ -41,18 +41,72 @@ class SpritePreview(QMainWindow):
 
 
     def setupUI(self):
-        # An application needs a central widget - often a QFrame
-        frame = QFrame()
+        def setupUI(self):
+            # Central widget
+            frame = QFrame()
+            main_layout = QVBoxLayout()
 
-        # Add a lot of code here to make layouts, more QFrame or QWidgets, and
-        # the other components of the program.
-        # Create needed connections between the UI components and slot methods
-        # you define in this class.
+            self.image_label = QLabel()
+            self.image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.image_label.setPixmap(self.frames[0])
+
+            fps_text_label = QLabel("Frames per second")
+            fps_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+            self.fps_value_label = QLabel(str(self.fps))
+            self.fps_value_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+            self.slider = QSlider(Qt.Orientation.Horizontal)
+            self.slider.setRange(1, 100)
+            self.slider.setValue(self.fps)
+            self.slider.setTickPosition(QSlider.TickPosition.TicksBelow)
+            self.slider.setTickInterval(10)
+            self.slider.valueChanged.connect(self.change_fps)
+
+            self.start_button = QPushButton("Start")
+            self.start_button.clicked.connect(self.toggle_animation)
+
+            controls_layout = QVBoxLayout()
+            controls_layout.addWidget(fps_text_label)
+            controls_layout.addWidget(self.slider)
+            controls_layout.addWidget(self.fps_value_label)
+            controls_layout.addWidget(self.start_button)
+
+            main_layout.addWidget(self.image_label)
+            main_layout.addLayout(controls_layout)
+
+            frame.setLayout(main_layout)
+            self.setCentralWidget(frame)
+
+            menu_bar = self.menuBar()
+            file_menu = menu_bar.addMenu("File")
+
+            pause_action = QAction("Pause", self)
+            exit_action = QAction("Exit", self)
+
+            pause_action.triggered.connect(self.pause_animation)
+            exit_action.triggered.connect(self.close)
+
+            file_menu.addAction(pause_action)
+            file_menu.addAction(exit_action)
+
+        def next_frame(self):
+            self.current_frame += 1
+            if self.current_frame >= self.num_frames:
+                self.current_frame = 0
+            self.image_label.setPixmap(self.frames[self.current_frame])
+
+        def change_fps(self, value):
+            self.fps = value
+            self.fps_value_label.setText(str(value))
+
+            if self.timer.isActive():
+                delay = int(1000 / self.fps)
+                self.timer.start(delay)
 
         self.setCentralWidget(frame)
 
 
-    # You will need methods in the class to act as slots to connect to signals
 
 
 def main():
